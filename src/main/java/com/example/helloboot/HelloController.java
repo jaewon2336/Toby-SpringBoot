@@ -16,6 +16,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello(String name) {
-        return helloService.sayHello(Objects.requireNonNull(name)); // name이 null인 경우를 방지
+        if (name == null || name.trim().length() == 0) throw new IllegalArgumentException();
+        return helloService.sayHello(name); // name이 null인 경우를 방지
     }
 }
